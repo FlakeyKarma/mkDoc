@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
     "eiusmod", "sed", "adipiscing", "amet", "ipsum", 
     "est", "anim", "desert", "qui", "sunt", "non"};
     for(int i = 0; i < argc; i++){
-        if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help")){
+        if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0){
             cout << "\n\n\tmkDoc v1.0" << endl;
             cout << "\n\tby FlakeyKarma" << endl;
             cout << "\n\n\tFor all of your random document creation needs!" << endl;
