@@ -2,12 +2,13 @@
 
 int main(int argc, char* argv[]){
     ofstream fil;
-    int size;
+    int size = 0;
     string a;
     vector<string> vec = {"ut", "dolore", "nostrud",
     "veniam", "ad", "aliqua", "et", "incididunt", 
     "eiusmod", "sed", "adipiscing", "amet", "ipsum", 
     "est", "anim", "desert", "qui", "sunt", "non"};
+    vector<char> punctuationz = {',', '\'', '.', '"', '!', '?'};
     for(int i = 0; i < argc; i++){
         if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0){
             cout << "\n\n\tmkDoc v1.0" << endl;
@@ -24,7 +25,7 @@ int main(int argc, char* argv[]){
         }
         if(strcmp(argv[i], "-f") == 0 || strcmp(argv[i],"--file") == 0){
             i++;
-            fil.open(argv[i], ios::out | ios::app);
+            fil.open((string)argv[i]);
             continue;
         }
         if(strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--amount") == 0){
@@ -43,10 +44,13 @@ int main(int argc, char* argv[]){
     }
     cout << size << endl;
     cout << vec.size() << endl;
-    int inty;
+    int inty, intx;
     for(int i = 0; i < size*638; i++){
         inty = rand() % vec.size();
-        fil << vec.at(inty) << " ";
+        fil << vec.at(inty);
+        if(rand() % 10 == 1)
+            fil << punctuationz.at(rand() % punctuationz.size());
+        fil << " ";
     }
     fil << "END" << endl;
     fil.close();

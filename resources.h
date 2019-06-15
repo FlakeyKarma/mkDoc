@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <string.h>
-#include <fstream>
 #include <vector>
-#include <time.h>
+#include <cstdlib>
+#include <fstream>
 using namespace std;
 
 class docMk{
