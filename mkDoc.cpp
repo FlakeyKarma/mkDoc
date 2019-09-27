@@ -1,31 +1,31 @@
 #include "resources.h"
 
 int main(int argc, char* argv[]){
-    ofstream fil;
+    std::ofstream fil;
     int size = 0;
-    string a;
-    vector<string> vec = {"ut", "dolore", "nostrud",
+    std::string a;
+    std::vector<std::string> vec = {"ut", "dolore", "nostrud",
     "veniam", "ad", "aliqua", "et", "incididunt", 
     "eiusmod", "sed", "adipiscing", "amet", "ipsum", 
-    "est", "anim", "desert", "qui", "sunt", "non"};
-    vector<char> punctuationz = {',', '\'', '.', '"', '!', '?'};
+    "est", "anim", "desert", "qui", "sunt", "non", "\t", "\n"};
+    std::vector<char> punctuationz = {',', '\'', '.', '"', '!', '?'};
     for(int i = 0; i < argc; i++){
         if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0){
-            cout << "\n\n\tmkDoc v1.0" << endl;
-            cout << "\n\tby FlakeyKarma" << endl;
-            cout << "\n\n\tFor all of your random document creation needs!" << endl;
-            cout << "\n\tUsage:" << endl;
-            cout << "\n\t\tmkDoc <options>" << endl;
-            cout << "\n\tOptions:" << endl;
-            cout << "\t\t-h, --help  \tDisplay this help menu" << endl;
-            cout << "\t\t-f, --file  \tText file chosen for writing" << endl;
-            cout << "\t\t-a, --amount\tAmount of pages worth of writing" << endl;
-            cout << "\n\n" << endl;
+            std::cout << "\n\n\tmkDoc v1.1" << std::endl;
+            std::cout << "\n\tby FlakeyKarma" << std::endl;
+            std::cout << "\n\n\tFor all of your random document creation needs!" << std::endl;
+            std::cout << "\n\tUsage:" << std::endl;
+            std::cout << "\n\t\tmkDoc <options>" << std::endl;
+            std::cout << "\n\tOptions:" << std::endl;
+            std::cout << "\t\t-h, --help  \tDisplay this help menu" << std::endl;
+            std::cout << "\t\t-f, --file  \tText file chosen for writing" << std::endl;
+            std::cout << "\t\t-a, --amount\tAmount of pages worth of writing" << std::endl;
+            std::cout << "\n\n" << std::endl;
             exit(1);
         }
         if(strcmp(argv[i], "-f") == 0 || strcmp(argv[i],"--file") == 0){
             i++;
-            fil.open((string)argv[i]);
+            fil.open((std::string)argv[i]);
             continue;
         }
         if(strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--amount") == 0){
@@ -40,20 +40,26 @@ int main(int argc, char* argv[]){
     if(fil.good()){
     }
     if(!fil.good()){
-        fil.open("temp.txt", ios::out | ios::app);
+        fil.open("temp.txt", std::ios::out | std::ios::app);
     }
-    cout << size << endl;
-    cout << vec.size() << endl;
+    std::cout << size << std::endl;
+    std::cout << vec.size() << std::endl;
     int inty, intx;
     for(int i = 0; i < size*638; i++){
         inty = rand() % vec.size();
+        if(inty == vec.size()-1 || inty == vec.size()-2){
+            fil << vec.at(vec.size()-1) + vec.at(vec.size()-2);
+            continue;
+        }
         fil << vec.at(inty);
         if(rand() % 10 == 1)
             fil << punctuationz.at(rand() % punctuationz.size());
-        fil << " ";
+        if(i != size*638-1){
+            fil << " ";
+        }
     }
-    fil << "END" << endl;
+    fil << "." << std::endl;
     fil.close();
-    cout << "done" << endl;
+    std::cout << "done" << std::endl;
     return 0;
 }

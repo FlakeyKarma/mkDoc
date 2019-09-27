@@ -12,8 +12,8 @@ void docMk::pauz(){
     #ifdef _WIN_32
     system("pause");
     #else
-    cout << "/EnterAnyKey";
-    cin.ignore();
-    cin.get();
+    std::cout << "/EnterAnyKey";
+    std::cin.ignore();
+    std::cin.get();
     #endif
 };
